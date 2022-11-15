@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Signup from "../components/SignupForm";
+import Login from "../components/LoginForm";
 
-function Home() {
+const Home = () => {
   return (
-    <div>Home</div>
-  )
-}
+    <div>
+      <Signup />
+      <Login />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
