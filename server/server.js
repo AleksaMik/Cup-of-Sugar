@@ -8,7 +8,7 @@ const db = require("./config/connection");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
-
+console.log(resolvers);
 const server = new ApolloServer({
   typeDefs,
   resolvers,

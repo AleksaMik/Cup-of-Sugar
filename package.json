@@ -9,6 +9,7 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build"
   },
+   "engines" : { "node" : "16.16" },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AleksaMik/Cup-of-Sugar.git"

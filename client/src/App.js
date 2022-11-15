@@ -11,8 +11,8 @@ import { setContext } from '@apollo/client/link/context';
 import Home from './pages/Home';
 import Search from './pages/SearchRentals';
 import Saved from './pages/SavedRentals';
-import Post from './pages/PostRentals';
-import { StoreProvider } from './utils/GlobalState';
+// import Post from './pages/PostRentals';
+// import { StoreProvider } from './utils/GlobalState';
 
 
 const httpLink = createHttpLink({
