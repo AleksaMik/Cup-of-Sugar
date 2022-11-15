@@ -29,10 +29,10 @@ const resolvers = {
           path: "rentals.item",
           populate: "category",
         });
-        user.rental.sort((a, b) => b.rentaldate - a.rentalDate);
+        // user.rental.sort((a, b) => b.rentaldate - a.rentalDate);
         return user;
       }
-      throw new AuthenticationError("Not Logged in, sorry");
+    //   throw new AuthenticationError("Not Logged in, sorry");
     },
     // rental: async (parent, { _id }, context) => {
     //   if (context.user) {
