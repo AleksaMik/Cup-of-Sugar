@@ -9,7 +9,9 @@
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build"
   },
-   "engines" : { "node" : "16.16" },
+  "engines": {
+    "node": "16.16"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AleksaMik/Cup-of-Sugar.git"
@@ -21,6 +23,8 @@
   },
   "homepage": "https://github.com/AleksaMik/Cup-of-Sugar#readme",
   "dependencies": {
-   
+    "@apollo/react-hooks": "^4.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "react-bootstrap": "^2.6.0"
   }
 }

@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Category, Item, Rental } = require("../models");
+const { Users, Category, Items, Rentals } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -25,14 +25,11 @@ const resolvers = {
     // },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "rentals.item",
+        const user = await Users.findById(context.user._id).populate({
           populate: "category",
-        });
-        // user.rental.sort((a, b) => b.rentaldate - a.rentalDate);
-        return user;
+        });        return user;
       }
-    //   throw new AuthenticationError("Not Logged in, sorry");
+      // throw new AuthenticationError("Not Logged in, sorry");
     },
     // rental: async (parent, { _id }, context) => {
     //   if (context.user) {
@@ -47,7 +44,7 @@ const resolvers = {
   },
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await User.create(args);
+      const user = await Users.create(args);
       const token = signToken(user);
 
       return { token, user };
@@ -63,15 +60,15 @@ const resolvers = {
     //   }
     //   throw new AuthenticationError("Not Logged in, silly");
     // },
-    updateUser: async (parent, args, context) => {
-      if (context.user) {
-        return User.findByIdAndUpdate(context.user.id, args, {
-          new: true,
-        });
-      }
+    // updateUser: async (parent, args, context) => {
+    //   if (context.user) {
+    //     return User.findByIdAndUpdate(context.user.id, args, {
+    //       new: true,
+    //     });
+    //   }
 
-      throw new AuthenticationError("Not logged in");
-    },
+    //   throw new AuthenticationError("Not logged in");
+    // },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
