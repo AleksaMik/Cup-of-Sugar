@@ -3,9 +3,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const rentalSchema = new Schema({
-  purchaseDate: {
-    type: Date,
-    default: Date.now,
+  name: {
+    type: String,
+    required: true,
+    trim: true 
   },
   products: [
     {
