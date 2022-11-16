@@ -1,10 +1,10 @@
 import React from "react";
-import {
-  Jumbotron,
-  Card,
-  Button,
-  Container,
-} from "react-bootstrap";
+// import {
+//   Jumbotron,
+//   Card,
+//   Button,
+//   Container,
+// } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 import { removeRentalId, saveRentalIds } from "../utils/localStorage";
