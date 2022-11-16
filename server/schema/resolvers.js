@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Category, Item, Rental } = require("../models");
+const { User, Category, Item, Rental,  } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -19,6 +19,9 @@ const resolvers = {
         };
       }
       return await Item.find(params).populate("category");
+    },
+    rental: async (parent, { _id }) => {
+      return await Rental.findById(_id).populate('category');
     },
     // item: async (parent, { _id }) => {
     //   return await Item.findById(_id).populate("category");
@@ -52,6 +55,7 @@ const resolvers = {
 
       return { token, user };
     },
+
     // addRental: async (parent, { items }, context) => {
     //   console.log(context);
     //   if (context.user) {

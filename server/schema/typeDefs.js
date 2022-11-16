@@ -13,7 +13,7 @@ const typeDefs = gql`
     }
     type Rental {
         _id: ID
-        rentalDate: String
+        name: String
         items: [Item]
     }
     type User {
@@ -37,6 +37,7 @@ const typeDefs = gql`
         updateUser(firstName: String, lastName: String, email: String, password: String): User
         login(email:String!, password: String!): Auth
     }
+
 `;
 
 // addItem(_id: ID!, name: String!): Item
