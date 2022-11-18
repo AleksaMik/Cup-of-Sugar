@@ -98,7 +98,7 @@ db.once('open', async () => {
       quantity: 1
     },
     {
-      name: 'Todler Play Pen',
+      name: 'Toodler Play Pen',
       category: categories[4]._id,
       description:
         'Sed a mauris condimentum, elementum enim in, rhoncus dui. Phasellus lobortis leo odio, sit amet pharetra turpis porta quis.',
