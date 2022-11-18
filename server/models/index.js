@@ -1,6 +1,6 @@
-const Rentals = require ('./Rentals');
-const Users = require ('./Users');
+const Order = require ('./Order');
+const User = require ('./User');
 const Category = require('./Category');
-const Items = require('./Items')
+const Rental = require('./Rental')
 
-module.exports = { Rentals, Users, Category, Items};
+module.exports = { Order, User, Category, Rental};

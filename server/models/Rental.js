@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const { Rental } = require('.');
 
 const { Schema } = mongoose;
 
-const itemSchema = new Schema({
+const rentalSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -31,6 +32,6 @@ const itemSchema = new Schema({
   },
 });
 
-const Items = mongoose.model('Items', itemSchema);
+const Rental = mongoose.model('Rental', rentalSchema);
 
-module.exports = Items;
+module.exports = Rental;

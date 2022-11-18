@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { Users, Category, Items, Rentals } = require("../models");
+const { User, Category, Rental, Order } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,28 +7,29 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    // items: async (parent, { category, name }) => {
-    //   const params = {};
+    rentals: async (parent, { category, name }) => {
+      const params = {};
 
-    //   if (category) {
-    //     params.category = category;
-    //   }
-    //   if (name) {
-    //     params.name = {
-    //       $regex: name,
-    //     };
-    //   }
-    //   return await Item.find(params).populate("category");
-    // },
-    // item: async (parent, { _id }) => {
-    //   return await Item.findById(_id).populate("category");
-    // },
+      if (category) {
+        params.category = category;
+      }
+      if (name) {
+        params.name = {
+          $regex: name,
+        };
+      }
+      return await Item.find(params).populate("category");
+    },
+    rental: async (parent, { _id }) => {
+      return await Item.findById(_id).populate("category");
+    },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await Users.findById(context.user.id).populate({
-          populate: "category",
+          path: 'orders.rentals',
+          populate: "rentals",
         });       
-         return user;
+         return [user];
       }
       // throw new AuthenticationError("Not Logged in, sorry");
     },

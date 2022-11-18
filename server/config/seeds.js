@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User, Rentals, Category } = require('../models');
+const { User, Rental, Category } = require('../models');
 
 db.once('open', async () => {
   await Category.deleteMany();
@@ -14,9 +14,9 @@ db.once('open', async () => {
 
   console.log('categories seeded');
 
-  await Rentals.deleteMany();
+  await Rental.deleteMany();
 
-  const rentals = await Rentals.insertMany([
+  const rentals = await Rental.insertMany([
     {
       name: 'Ladder',
       description:

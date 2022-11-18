@@ -8,16 +8,22 @@ const typeDefs = gql`
     type Rental {
         _id: ID
         name: String
-        description: 
+        description: String
         image: String
+        quantity: Int
         category: Category
+    }
+    type Order {
+        _id: ID
+        name: String
+        rentals: [Rental]
     }
     type User {
         _id: ID
         username: String
         email: String
         password: String
-        rentals: [Rental]
+        order: [Order]
     }
     type Auth {
         token: ID
@@ -25,8 +31,10 @@ const typeDefs = gql`
     }
     type Query {
         categories: [Category]
-        user: [User]
-
+        users: [User]
+        user: User
+        rentals: [Rental]
+        rental(name:String, description: String, quantity: Int):  Rental
     }
     type Mutation {
         addUser(username: String, email: String, password: String): User

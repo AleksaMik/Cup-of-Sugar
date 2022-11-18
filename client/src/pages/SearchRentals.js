@@ -10,14 +10,14 @@ function Success() {
   useEffect(() => {
     async function SaveRental() {
       const cart = await idbPromise('cart', 'get');
-      const products = cart.map((item) => item._id);
+      const products = cart.map((rental) => rental._id);
 
       if (products.length) {
-        const { data } = await addRental({ variables: { rentals } });
-        const rentalsData = data.addRental.rentals;
+        const { data } = await addRental({ variables: { rental } });
+        const rentalData = data.addRental.rental;
 
-        rentalsData.forEach((item) => {
-          idbPromise('cart', 'delete', item);
+        rentalData.forEach((rental) => {
+          idbPromise('cart', 'delete', rental);
         });
       }
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const rentalSchema = new Schema({
+const orderSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -16,6 +16,6 @@ const rentalSchema = new Schema({
   ],
 });
 
-const Rentals = mongoose.model('Rentals', rentalSchema);
+const Order = mongoose.model('Order', orderSchema);
 
-module.exports = Rentals;
+module.exports = Order;
