@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 
@@ -6,16 +6,15 @@ const orderSchema = new Schema({
   name: {
     type: String,
     required: true,
-    trim: true 
+    trim: true,
   },
-  products: [
+  rentals: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Items',
+      ref: "Items",
     },
   ],
 });
 
 const Order = mongoose.model('Order', orderSchema);
-
 module.exports = Order;

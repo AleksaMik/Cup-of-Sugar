@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const { Rental } = require('.');
 
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
 const rentalSchema = new Schema({
   name: {
@@ -32,6 +31,6 @@ const rentalSchema = new Schema({
   },
 });
 
-const Rental = mongoose.model('Rental', rentalSchema);
+const Rental = model("Rental", rentalSchema);
 
 module.exports = Rental;

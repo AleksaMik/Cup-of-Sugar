@@ -30,14 +30,18 @@ const typeDefs = gql`
         user: User
     }
     type Query {
+        category(_id: ID!): Category
         categories: [Category]
-        users: [User]
         user: User
-        rentals: [Rental]
-        rental(name:String, description: String, quantity: Int):  Rental
+        rentals(category: ID, name: String): [Rental]
+        rental(_id: ID!):  Rental
+        order(_id: ID!): Order
     }
     type Mutation {
         addUser(username: String, email: String, password: String): User
+        addOrder(rental: [ID]!): Order
+        updateUser(username: String, email: String, password: String): User
+        updateRental(_id: ID!, quantity: Int!): Rental
     }
 `;
 
