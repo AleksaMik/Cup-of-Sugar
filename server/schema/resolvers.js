@@ -7,27 +7,28 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    items: async (parent, { category, name }) => {
-      const params = {};
+    // items: async (parent, { category, name }) => {
+    //   const params = {};
 
-      if (category) {
-        params.category = category;
-      }
-      if (name) {
-        params.name = {
-          $regex: name,
-        };
-      }
-      return await Item.find(params).populate("category");
-    },
+    //   if (category) {
+    //     params.category = category;
+    //   }
+    //   if (name) {
+    //     params.name = {
+    //       $regex: name,
+    //     };
+    //   }
+    //   return await Item.find(params).populate("category");
+    // },
     // item: async (parent, { _id }) => {
     //   return await Item.findById(_id).populate("category");
     // },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await Users.findById(context.user._id).populate({
+        const user = await Users.findById(context.user.id).populate({
           populate: "category",
-        });        return user;
+        });       
+         return user;
       }
       // throw new AuthenticationError("Not Logged in, sorry");
     },
@@ -45,9 +46,8 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, args) => {
       const user = await Users.create(args);
-      const token = signToken(user);
-
-      return { token, user };
+      console.log(user);
+      return user ;
     },
     // addRental: async (parent, { items }, context) => {
     //   console.log(context);
@@ -69,23 +69,23 @@ const resolvers = {
 
     //   throw new AuthenticationError("Not logged in");
     // },
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+    // login: async (parent, { email, password }) => {
+    //   const user = await User.findOne({ email });
 
-      if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
+    //   if (!user) {
+    //     throw new AuthenticationError("Incorrect credentials");
+    //   }
 
-      const correctPw = await user.isCorrectPassword(password);
+    //   const correctPw = await user.isCorrectPassword(password);
 
-      if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
-      }
+    //   if (!correctPw) {
+    //     throw new AuthenticationError("Incorrect credentials");
+    //   }
 
-      const token = signToken(user);
+    //   const token = signToken(user);
 
-      return { token, user };
-    },
+    //   return { token, user };
+    // },
   },
 };
 

@@ -29,18 +29,13 @@ const typeDefs = gql`
     }
     type Query {
         categories: [Category]
-        user: User
-        items(category: ID, name: String): [Item]
+        user: [User]
+
     }
     type Mutation {
-        
-        addUser(username: String!, email: String!, password: String!): User
-        login(email:String!, password: String!): Auth
+        addUser(username: String, email: String, password: String): User
     }
 `;
-
-// addItem(_id: ID!, name: String!): Item
-// updateItem(_id: ID!, name: String): Item
 
 
 module.exports = typeDefs;
