@@ -8,6 +8,7 @@ const typeDefs = gql`
     type Rental {
         _id: ID
         name: String
+        description: 
         image: String
         category: Category
     }
