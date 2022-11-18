@@ -13,7 +13,7 @@ const typeDefs = gql`
     }
     type Rental {
         _id: ID
-        rentalDate: String
+        name: String
         items: [Item]
     }
     type User {

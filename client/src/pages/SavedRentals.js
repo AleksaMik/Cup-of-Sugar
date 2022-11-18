@@ -1,77 +1,47 @@
-import React from "react";
-// import {
-//   Jumbotron,
-//   Card,
-//   Button,
-//   Container,
-// } from "react-bootstrap";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import Auth from "../utils/auth";
-import { removeRentalId, saveRentalIds } from "../utils/localStorage";
-import { GET_ME } from "../utils/queries";
-import { REMOVE_RENTAL } from "../utils/mutations";
-const SavedRentals = () => {
-  const { data } = useQuery(GET_ME);
-  const userData = data?.me || [];
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-  const [removeRental,{ error }] = useMutation(REMOVE_RENTAL);
-  const handleDeleteRental = async (rentalId) => {
-    const token = Auth.loggedIn()
- ? Auth.getToken() : null; if (!token) {
-return false;
- }  
- try {
-  const response = await removeRental({
-    variables: { rentalId: rentalId },
-  });
 
-  if (!response) {
-    throw new Error("Sorry, something went wrong");
+import { useQuery } from '@apollo/client';
+import { QUERY_USER } from '../utils/queries';
+
+function SavedRentals() {
+  const { data } = useQuery(QUERY_USER);
+  let user;
+
+  if (data) {
+    user = data.user;
   }
-  removeRentalId(rentalId);
- } catch (err) {
-  console.error(error);
- }
-}; 
-
-// sync localStorage with what was returned from the userData query
-
-const savedRentalIds = userData.savedRentals.map((rental) => rental.rentalId);
-saveRentalIds(saveRentalIds);
-
 
   return (
     <>
+      <div className="container my-1">
+        <Link to="/">← Back to Items</Link>
 
-    <Jumbotron fluid className="text-light bg-dark"> <Container>
-    <h1>Viewing saved books!</h1>
-  </Container>
-  </Jumbotron>
-  <Container>
-    <h2>
-      {userData.savedRentals.length ? `Viewing ${userData.savedRentals.length} saved ${userData.savedRentals.length === 1 ? "rental" : "rentals"}:`
-      : "No saved rentals!"
-      }
-    </h2>
-    {userData.savedRentals.map((rental) => {
-            return (
-              < Card key={rental.rentalId} border="dark">
-    <Card.Body>
-    <Card.Title>{rental.title}</Card.Title>
-    <Card.Text>(rental.description)</Card.Text>
-    <Button
- className="btn-block btn-danger"
- onClick={() => handleDeleteRental(rental.rentalId)}
->
- Delete this Rental!
-</Button>
-</Card.Body>
-</Card>
+        {user ? (
+          <>
+            <h2>
+              Rentals History for {user.firstName} {user.lastName}
+            </h2>
+            {user.rentals.map((rentals) => (
+              <div key={rentals._id} className="my-2">
+                <div className="flex-row">
+                  {order.rentals.map(({ _id, image, name }, index) => (
+                    <div key={index} className="card px-1 py-1">
+                      <Link to={`/rentals/${_id}`}>
+                        <img alt={name} src={`/images/${image}`} />
+                        <p>{name}</p>
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </>
+        ) : null}
+      </div>
+    </>
   );
-  })}
-  </Container>
-</>
-  );
-};
+}
 
 export default SavedRentals;

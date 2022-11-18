@@ -13,9 +13,12 @@
   "license": "ISC",
   "dependencies": {
     "@apollo/client": "^3.3.7",
+    "@apollo/react-hooks": "^4.0.0",
     "graphql": "^14.6.0",
+    "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
+    "react-bootstrap": "^2.6.0",
     "react-dom": "^16.13.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.2"

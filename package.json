@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
     "install": "cd server && npm i && cd ../client && npm i",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "develop": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
+    "seed": "cd server && npm run seed"
   },
   "engines": {
     "node": "16.16"
@@ -22,9 +24,10 @@
     "url": "https://github.com/AleksaMik/Cup-of-Sugar/issues"
   },
   "homepage": "https://github.com/AleksaMik/Cup-of-Sugar#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  },
   "dependencies": {
-    "@apollo/react-hooks": "^4.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "react-bootstrap": "^2.6.0"
+    "watch": "^1.0.2"
   }
 }
