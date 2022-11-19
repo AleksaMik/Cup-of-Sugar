@@ -10,7 +10,7 @@ function Navbar() {
         <ul className="flex-row">
           <li className="mx-1">
             <Link to="/SavedRentals">
-              Rentals History
+              Your Rentals
             </Link>
           </li>
           <li className="mx-1">
@@ -25,12 +25,12 @@ function Navbar() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/SignupForm">
+            <Link to="/signup">
               Signup
             </Link>
           </li>
           <li className="mx-1">
-            <Link to="/LoginForm">
+            <Link to="/login">
               Login
             </Link>
           </li>
@@ -41,11 +41,11 @@ function Navbar() {
 
   return (
     <header className="flex-row px-1">
-      <h1>
+      <h3>
         <Link to="/">
-          <span role="img" aria-label="Cup of Sugar"></span>
+          Back to Home 
         </Link>
-      </h1>
+      </h3>
 
       <nav>
         {showNavigation()}
