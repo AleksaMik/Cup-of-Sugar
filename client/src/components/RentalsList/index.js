@@ -5,7 +5,7 @@ import { UPDATE_RENTALS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
 import { QUERY_RENTALS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
-// import spinner from '../../assets/spinner.gif';
+
 
 function RentalsList() {
   const [state, dispatch] = useStoreContext();
@@ -59,7 +59,7 @@ function RentalsList() {
           ))}
         </div>
       ) : (
-        <h3>Please add Items!</h3>
+        <h3>Please add Item!</h3>
       )}
     </div>
   );

@@ -14,6 +14,7 @@ import SignupForm from "./pages/SignupForm";
 import { StoreProvider } from './utils/GlobalState';
 import SavedRentals from "./pages/SavedRentals";
 import SearchRentals from "./pages/SavedRentals";
+import Navbar from "./components/Navbar";
 
 
 
@@ -42,6 +43,7 @@ function App() {
       <Router>
         <div>
           <StoreProvider>
+            <Navbar/>
             <Routes>
               <Route 
                 path="/" 
