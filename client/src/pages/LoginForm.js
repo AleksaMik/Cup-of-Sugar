@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
-function Login(props) {
+function LoginForm(props) {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
 
@@ -56,7 +56,7 @@ function Login(props) {
         </div>
         {error ? (
           <div>
-            <p className="error-text">The provided credentials are incorrect</p>
+            <p className="error-text">Try again!</p>
           </div>
         ) : null}
         <div className="flex-row flex-end">
@@ -67,4 +67,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default LoginForm;

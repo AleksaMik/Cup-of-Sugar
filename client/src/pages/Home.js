@@ -1,12 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+// import Navbar from "../components/Navbar";
 // import Category from "../components/Category";
-// import Cart from "../components/Cart";
+import LoginForm from "../pages/LoginForm";
+import SignupForm from "../pages/SignupForm";
 
 const Home = () => {
   return (
     <div className="container">
-     <Navbar/>
+     <LoginForm/>
+     <SignupForm/>
+     {/* <Category/> */}
     </div>
   );
 };

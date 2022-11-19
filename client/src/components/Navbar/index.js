@@ -2,14 +2,14 @@ import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
-function Nav() {
+function Navbar() {
 
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/rentalHistory">
+            <Link to="/SavedRentals">
               Rentals History
             </Link>
           </li>
@@ -25,12 +25,12 @@ function Nav() {
       return (
         <ul className="flex-row">
           <li className="mx-1">
-            <Link to="/signup">
+            <Link to="/SignupForm">
               Signup
             </Link>
           </li>
           <li className="mx-1">
-            <Link to="/login">
+            <Link to="/LoginForm">
               Login
             </Link>
           </li>
@@ -54,4 +54,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default Navbar;
