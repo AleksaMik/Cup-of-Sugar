@@ -1,6 +1,5 @@
 import React from "react";
 // import Navbar from "../components/Navbar";
-// import Category from "../components/Category";
 // import Cart from "../components/Cart";
 import LoginForm from "../pages/LoginForm";
 import SignupForm from "../pages/SignupForm";
