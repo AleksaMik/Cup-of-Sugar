@@ -1,6 +1,6 @@
 import React from "react";
 // import Navbar from "../components/Navbar";
-// import Cart from "../components/Cart";
+// import Category from "../components/Category";
 import LoginForm from "../pages/LoginForm";
 import SignupForm from "../pages/SignupForm";
 
@@ -9,6 +9,7 @@ const Home = () => {
     <div className="container">
      <LoginForm/>
      <SignupForm/>
+     {/* <Category/> */}
     </div>
   );
 };
