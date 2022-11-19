@@ -1,12 +1,12 @@
 import React from "react";
-import Signup from "./SignupForm";
-import Login from "./LoginForm";
+import Navbar from "../components/Navbar";
+// import Category from "../components/Category";
+// import Cart from "../components/Cart";
 
 const Home = () => {
   return (
-    <div>
-      <Signup />
-      <Login />
+    <div className="container">
+     <Navbar/>
     </div>
   );
 };
