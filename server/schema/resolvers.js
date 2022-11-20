@@ -26,7 +26,7 @@ const resolvers = {
     rental: async (parent, { _id }) => {
       return await Rental.findById(_id).populate("category");
     },
-    user: async (parent, {_id}) => {
+    user: async (parent, { _id }) => {
       const user = await User.find();
 
       return user;
