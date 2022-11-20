@@ -7,7 +7,7 @@ db.once("open", async () => {
   await Category.deleteMany();
 
   const categories = await Category.insertMany([
-    { name: "Tools/Equipments" , _id: "1"},
+    { name: "Tools/Equipments"},
     { name: "Household Supplies" },
     { name: "For Party" },
     { name: "Books" },

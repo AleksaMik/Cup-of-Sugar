@@ -23,11 +23,7 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        order: [Order]
-    }
-    type Auth {
-        token: ID
-        user: User
+        orders: [Order]
     }
     type Query {
         category(_id: ID!): Category

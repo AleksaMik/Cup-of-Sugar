@@ -2,11 +2,10 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Category, Rental, Order } = require("../models");
 const { signToken } = require("../utils/auth");
 
-
 const resolvers = {
   Query: {
-    category: async (parent, {_id}) => {
-      return await Category.findById(_id).populate('category');
+    category: async (parent, { _id }) => {
+      return await Category.findById(_id);
     },
     categories: async () => {
       return await Category.find();
@@ -27,32 +26,25 @@ const resolvers = {
     rental: async (parent, { _id }) => {
       return await Rental.findById(_id).populate("category");
     },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user.id).populate({
-          path: 'orders.rentals',
-          populate: "category",
-        });       
-         return user;
-      }
-      // throw new AuthenticationError("Not Logged in, sorry");
+    user: async (parent, {_id}) => {
+      const user = await User.find();
+
+      return user;
     },
+    // throw new AuthenticationError("Not Logged in, sorry");
     order: async (parent, { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "orders.rentals",
-          populate: "category",
-        });
-        return user.orders.id(_id);
+        const user = await User.findbyId(context.user._id);
       }
+      return user.order.id(_id);
       // throw new AuthenticationError("Not Logged in, sorry, not sorry.");
     },
   },
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
-      
-      return user ;
+
+      return user;
     },
 
     addOrder: async (parent, { rentals }, context) => {
@@ -73,28 +65,17 @@ const resolvers = {
         });
       }
 
-      throw new AuthenticationError("Not logged in");
+      // throw new AuthenticationError("Not logged in");
     },
-    updateRental: async (parent, {_id, quantity}) => {
-      const decrement = Math.abs(quantity)*-1;
-      return await Rental.findByIdAndUpdate(_id, {$inc: {quantity: decrement}}, {new: true});
+    updateRental: async (parent, { _id, quantity }) => {
+      const decrement = Math.abs(quantity) * -1;
+      return await Rental.findByIdAndUpdate(
+        _id,
+        { $inc: { quantity: decrement } },
+        { new: true }
+      );
     },
-    // login: async (parent, { email, password }) => {
-    //   const user = await User.findOne({ email });
-
-    //   if (!user) {
-    //     throw new AuthenticationError("Incorrect credentials");
-    //   }
-
-    //   const correctPw = await user.isCorrectPassword(password);
-
-    //   if (!correctPw) {
-    //     throw new AuthenticationError("Incorrect credentials");
-    //   }
-
-    //   const token = signToken(user);
-
-    //   return { token, user };
-  }};
+  },
+};
 
 module.exports = resolvers;
