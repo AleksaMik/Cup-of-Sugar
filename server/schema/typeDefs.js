@@ -25,6 +25,10 @@ const typeDefs = gql`
         password: String
         orders: [Order]
     }
+    type Auth {
+        token: ID
+        user: User
+    }
     type Query {
         category(_id: ID!): Category
         categories: [Category]
@@ -38,6 +42,7 @@ const typeDefs = gql`
         addOrder(rental: [ID]!): Order
         updateUser(username: String, email: String, password: String): User
         updateRental(_id: ID!, quantity: Int!): Rental
+        login(email: String!, password: String!): Auth
     }
 `;
 
