@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
-const itemSchema = new Schema({
+const rentalSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -31,6 +31,6 @@ const itemSchema = new Schema({
   },
 });
 
-const Items = mongoose.model('Items', itemSchema);
+const Rental = model("Rental", rentalSchema);
 
-module.exports = Items;
+module.exports = Rental;

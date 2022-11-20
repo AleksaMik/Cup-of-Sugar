@@ -1,5 +1,5 @@
-const db = require("./connection");
-const { Users, Rentals, Category } = require("../models");
+const db = require('./connection');
+const { User, Rental, Category } = require('../models');
 
 db.once("open", async () => {
   await Category.deleteMany();
@@ -14,9 +14,9 @@ db.once("open", async () => {
 
   console.log("categories seeded");
 
-  await Rentals.deleteMany();
+  await Rental.deleteMany();
 
-  const rentals = await Rentals.insertMany([
+  const rentals = await Rental.insertMany([
     {
       name: "Ladder",
       description:
@@ -119,20 +119,20 @@ db.once("open", async () => {
 
   await Users.deleteMany();
 
-  await Users.create({
+  await User.create({
     username: "RobinHood",
     email: "hood@testmail.com",
     password: "password12345",
     rentals: [rentals[0]._id, rentals[4]._id, rentals[1]._id],
   });
 
-  await Users.create({
+  await User.create({
     username: "PeterParker",
     email: "parker@testmail.com",
     password: "password12345",
   });
 
-  await Users.create({
+  await User.create({
     username: "SkyWalker",
     email: "Skywalker@testmail.com",
     password: "password12345",

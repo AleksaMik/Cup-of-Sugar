@@ -3,11 +3,11 @@ import { gql } from '@apollo/client';
 export const QUERY_USER = gql`
   {
     user {
-      firstName
-      lastName
-      rentals {
+      username
+      orders {
         _id
-        items {
+        name
+        rentals {
           _id
           name
           description
@@ -33,7 +33,7 @@ export const QUERY_RENTALS = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($reentals: [ID]!) {
+  query getCheckout($rentals: [ID]!) {
     checkout(rentals: $rentals) {
       session
     }
