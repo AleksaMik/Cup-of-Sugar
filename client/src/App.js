@@ -11,12 +11,11 @@ import { setContext } from "@apollo/client/link/context";
 import Home from "./pages/Home";
 import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
-import { StoreProvider } from './utils/GlobalState';
+import { StoreProvider } from "./utils/GlobalState";
 import SavedRentals from "./pages/SavedRentals";
 import SearchRentals from "./pages/SavedRentals";
 import Navbar from "./components/Navbar";
-
-
+import PostRentals from "./pages/PostRentals";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -43,28 +42,14 @@ function App() {
       <Router>
         <div>
           <StoreProvider>
-            <Navbar/>
+            <Navbar />
             <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
-              />
-              <Route 
-                path="/login" 
-                element={<LoginForm />} 
-              />
-              <Route 
-                path="/signup" 
-                element={<SignupForm />} 
-              />
-              <Route 
-                path="/save" 
-                element={<SavedRentals />} 
-              />
-              <Route 
-                path="/search" 
-                element={<SearchRentals />} 
-              />
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<LoginForm />} />
+              <Route path="/signup" element={<SignupForm />} />
+              <Route path="/save" element={<SavedRentals />} />
+              <Route path="/search" element={<SearchRentals />} />
+              <Route path="/post" element={<PostRentals />} />
             </Routes>
           </StoreProvider>
         </div>
