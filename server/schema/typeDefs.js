@@ -11,6 +11,7 @@ const typeDefs = gql`
         description: String
         image: String
         quantity: Int
+        zipcode: Int
         category: Category
     }
     type Order {
@@ -25,6 +26,9 @@ const typeDefs = gql`
         password: String
         orders: [Order]
     }
+    type Checkout {
+        session: ID
+    }
     type Auth {
         token: ID
         user: User
@@ -36,12 +40,14 @@ const typeDefs = gql`
         rentals(category: ID, name: String): [Rental]
         rental(_id: ID!):  Rental
         order(_id: ID!): Order
+        checkout(products: [ID]!): Checkout
     }
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         addOrder(rental: [ID]!): Order
         updateUser(username: String, email: String, password: String): User
-        updateRental(_id: ID!, quantity: Int!): Rental
+        addRental(_id: ID!, quantity: Int!)
+        updateRental(_id: ID!, quantity: Int!, zipcode: Int!): Rental
         login(email: String!, password: String!): Auth
     }
 `;
