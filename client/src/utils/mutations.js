@@ -11,32 +11,24 @@ export const LOGIN = gql`
   }
 `;
 export const ADD_RENTAL = gql`
-  mutation addRental($products: [ID]!) {
-    addRental(rentals: $rentals) {
-      rentals {
-        _id
-        name
-        description
-        quantity
-        category {
-          name
-        }
-      }
-    }
+  mutation addRental(
+    $category: String!
+    $name: String!
+    $zipcode: String!
+    $description: String!
+  ) {
+    addRental(
+      category: $category
+      name: $name
+      zipcode: $zipcode
+      description: $description
+    )
   }
 `;
 
 export const ADD_USER = gql`
-  mutation addUser(
-    $username: String!
-    $email: String!
-    $password: String!
-  ) {
-    addUser(
-      username: $username
-      email: $email
-      password: $password
-    ) {
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
       token
       user {
         _id
