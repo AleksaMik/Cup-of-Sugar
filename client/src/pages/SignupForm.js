@@ -43,9 +43,9 @@ function Signup(props) {
           <label htmlFor="username">Username:</label>
           <input
             placeholder="Username"
-            name="userName"
-            type="userName"
-            id="userName"
+            name="username"
+            type="username"
+            id="username"
             onChange={handleChange}
           />
         </div>
