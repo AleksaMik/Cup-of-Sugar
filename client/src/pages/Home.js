@@ -1,12 +1,10 @@
 import React from "react";
-// import RentalsList from "../components/RentalsList";
-// import Category from "../components/Category";
+import RentalsList from "../components/RentalsList";
+import Category from "../components/Category";
 
 function Home() {
   return (
     <div className="container">
-      {/* <Category />
-      <RentalsList /> */}
       <h1 className="about">Cup of Sugar</h1>
       <img src="/images/neighbours.jpg" alt="" className="neighbors"></img>
       <h2 className="about">
@@ -17,7 +15,11 @@ function Home() {
         </p>
         <p>Sign up or login to begin lending and borrowing!</p>
       </h2>
+      <div className="container">
+      <Category />
+      <RentalsList />
     </div>
+     </div>
   );
 }
 

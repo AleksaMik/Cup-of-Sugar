@@ -18,7 +18,7 @@ function PostRentals() {
         variables: { ...formState },
       });
 
-      window.location.reload();
+      window.location.load();
     } catch (err) {
       console.log(err);
     }
