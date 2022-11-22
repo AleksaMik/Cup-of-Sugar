@@ -15,11 +15,9 @@ function Home() {
         </p>
         <p>Sign up or login to begin lending and borrowing!</p>
       </h2>
-      <div className="container">
       <Category />
       <RentalsList />
     </div>
-     </div>
   );
 }
 

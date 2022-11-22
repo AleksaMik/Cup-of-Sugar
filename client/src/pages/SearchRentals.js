@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useMutation } from '@apollo/client';
-// import Jumbotron from '../components/Jumbotron';
+import Jumbotron from '../components/Jumbotron';
 import { ADD_RENTAL } from '../utils/mutations';
-// import { idbPromise } from '../utils/helpers';
+import { idbPromise } from '../utils/helpers';
 
 function Success() {
   const [addRental] = useMutation(ADD_RENTAL);
