@@ -76,7 +76,7 @@ db.once("open", async () => {
       category: categories[0]._id,
       description:
         "In sodales, ipsum quis ultricies porttitor, tellus urna aliquam arcu, eget venenatis purus ligula ut nisi. Fusce ut felis dolor. Mauris justo ante, aliquet non tempus in, tempus ac lorem. Aliquam lacinia dolor eu sem eleifend ultrices. Etiam mattis metus metus. Sed ligula dui, placerat non turpis vitae, suscipit volutpat elit. Phasellus sagittis, diam elementum suscipit fringilla, libero mauris scelerisque ex, ac interdum diam erat non sapien.",
-      image: "preasure-washer.jpg",
+      image: "pressurewasher.jpg",
       zipcode: "12345",
       quantity: 1,
     },
