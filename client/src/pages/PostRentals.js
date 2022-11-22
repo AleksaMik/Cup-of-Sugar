@@ -18,7 +18,7 @@ function PostRentals() {
         variables: { ...formState },
       });
 
-      window.location.load();
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -39,8 +39,13 @@ function PostRentals() {
       <div className="form-center">
         <form className="lendinput" onSubmit={handleFormSubmit}>
           <div className="flex-row space-around my-2">
-            <label for="category">Category:</label>
-            <select name="category" id="category" onChange={handleChange}>
+            <label htmlFor="category">Category:</label>
+            <select
+              name="category"
+              id="category"
+              value={formState.category}
+              onChange={handleChange}
+            >
               <option value="Tools/Equipments">Tools/Equipments</option>
               <option value="Household-Supplies">Household Supplies</option>
               <option value="For-Party">For Party</option>
@@ -55,6 +60,7 @@ function PostRentals() {
               name="name"
               type="text"
               id="name"
+              value={formState.name}
               onChange={handleChange}
             />
           </div>
@@ -65,6 +71,7 @@ function PostRentals() {
               name="zipcode"
               type="text"
               id="zipcode"
+              value={formState.zipcode}
               onChange={handleChange}
             />
           </div>
@@ -75,6 +82,7 @@ function PostRentals() {
               cols="30"
               name="description"
               id="description"
+              value={formState.description}
               onChange={handleChange}
             ></textarea>
           </div>
