@@ -9,6 +9,7 @@ const typeDefs = gql`
     _id: ID
     name: String
     description: String
+    quantity: Int
     image: String
     zipcode: String
     category: Category
