@@ -9,9 +9,9 @@ import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
 function Category() {
-  const {state, dispatch} = useStoreContext();
+  const [state, dispatch] = useStoreContext();
 
-  const { categories } = state;
+  const {categories } = state;
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
@@ -44,14 +44,14 @@ function Category() {
   return (
     <div>
       <h2>Rentals Category:</h2>
-      {categories.map((rent) => (
+      {categories.map((rentals) => (
         <button
-          key={rent._id}
+          key={rentals._id}
           onClick={() => {
-            handleClick(rent._id);
+            handleClick(rentals._id);
           }}
         >
-          {rent.name}
+          {rentals.name}
         </button>
       ))}
     </div>
