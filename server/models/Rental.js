@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const { Schema, model } = mongoose;
 
@@ -14,10 +14,10 @@ const rentalSchema = new Schema({
   image: {
     type: String,
 
-//   price: {
-//     type: Number,
-//     required: true,
-//     min: 0.99,
+    //   price: {
+    //     type: Number,
+    //     required: true,
+    //     min: 0.99,
   },
   quantity: {
     type: Number,
@@ -26,7 +26,11 @@ const rentalSchema = new Schema({
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'Category',
+    ref: "Category",
+    required: true,
+  },
+  zipcode: {
+    type: String,
     required: true,
   },
 });
