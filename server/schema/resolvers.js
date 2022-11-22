@@ -4,9 +4,6 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    category: async (parent, { _id }) => {
-      return await Category.findById(_id);
-    },
     categories: async () => {
       return await Category.find();
     },
@@ -26,47 +23,57 @@ const resolvers = {
     rental: async (parent, { _id }) => {
       return await Rental.findById(_id).populate("category");
     },
-    user: async (parent, { _id }) => {
-      const user = await User.find();
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: "orders.rentals",
+          populate: "category",
+        });
 
-      return user;
+        return user;
+      }
+      throw new AuthenticationError("Not Logged in, sorry");
     },
-    // throw new AuthenticationError("Not Logged in, sorry");
     order: async (parent, { _id }, context) => {
       if (context.user) {
-        const user = await User.findbyId(context.user._id);
+        const user = await User.findbyId(context.user._id).populate({
+          path: "orders.rentals",
+          populate: "category",
+        });
+
+        return user.orders.id(_id);
       }
-      return user.order.id(_id);
-      // throw new AuthenticationError("Not Logged in, sorry, not sorry.");
+      throw new AuthenticationError("Not Logged in, sorry, not sorry.");
     },
   },
+
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
-      return {token, user};
+      return { token, user };
     },
 
     addOrder: async (parent, { rentals }, context) => {
       console.log(context);
       if (context.user) {
         const order = new Order({ rentals });
-        await User.findByIdAndUpdate(context.user.id, {
+        await User.findByIdAndUpdate(context.user._id, {
           $push: { orders: order },
         });
         return order;
       }
-      // throw new AuthenticationError("Not Logged in, silly");
+     throw new AuthenticationError("Not Logged in, silly");
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
-        return User.findByIdAndUpdate(context.user.id, args, {
+        return User.findByIdAndUpdate(context.user._id, args, {
           new: true,
         });
       }
 
-      // throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError("Not logged in");
     },
     updateRental: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
@@ -76,23 +83,22 @@ const resolvers = {
         { new: true }
       );
     },
-    login: async (parent, {email,password}) => {
-      const user = await User.findOne({email});
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
 
-      if(!user) {
-        throw new AuthenticationError('Wrong credentials');
+      if (!user) {
+        throw new AuthenticationError("Wrong credentials");
       }
 
       const correctPw = await user.isCorrectPassword(password);
       if (!correctPw) {
-        throw new AuthenticationError('Wrong credentials');
+        throw new AuthenticationError("Wrong credentials");
       }
       const token = signToken(user);
 
-      return { token, user }; 
-    }
+      return { token, user };
+    },
   },
 };
 
 module.exports = resolvers;
-
