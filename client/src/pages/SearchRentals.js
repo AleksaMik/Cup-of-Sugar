@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { useMutation } from '@apollo/client';
-import Jumbotron from '../components/Jumbotron';
-import { ADD_RENTAL } from '../utils/mutations';
-import { idbPromise } from '../utils/helpers';
+import React, { useEffect } from "react";
+import { useMutation } from "@apollo/client";
+import Jumbotron from "../components/Jumbotron";
+import { ADD_RENTAL } from "../utils/mutations";
+import { idbPromise } from "../utils/helpers";
 
-function Success() {
+function SearchRentals() {
   const [addRental] = useMutation(ADD_RENTAL);
 
   useEffect(() => {
     async function SaveRental() {
-      const cart = await idbPromise('cart', 'get');
+      const cart = await idbPromise("cart", "get");
       const products = cart.map((rentals) => rentals._id);
 
       if (products.length) {
@@ -17,12 +17,12 @@ function Success() {
         const rentalData = data.addRental.rental;
 
         rentalData.forEach((rental) => {
-          idbPromise('cart', 'delete', rental);
+          idbPromise("cart", "delete", rental);
         });
       }
 
       setTimeout(() => {
-        window.location.assign('/');
+        window.location.assign("/");
       }, 5000);
     }
 
@@ -31,11 +31,9 @@ function Success() {
 
   return (
     <div>
-      <Jumbotron>
-        <h1>Success!</h1>
-      </Jumbotron>
+      <h1>Success!</h1>
     </div>
   );
 }
 
-export default Success;
+export default SearchRentals;
