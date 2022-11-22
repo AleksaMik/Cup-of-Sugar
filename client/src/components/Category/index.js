@@ -44,14 +44,14 @@ function Category() {
   return (
     <div>
       <h2>Rentals Category:</h2>
-      {categories.map((rentals) => (
+      {categories.map((item) => (
         <button
-          key={rentals._id}
+          key={item._id}
           onClick={() => {
-            handleClick(rentals._id);
+            handleClick(item._id);
           }}
         >
-          {rentals.name}
+          {item.name}
         </button>
       ))}
     </div>
