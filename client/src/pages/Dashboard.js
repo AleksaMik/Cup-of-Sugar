@@ -1,33 +1,26 @@
 import React from "react";
-// import Category from "../components/Category";
+import Category from "../components/Category";
 import {useEffect, useState} from "react";
+import Auth from '../utils/auth';
 
 
 const Dashboard = () => {
-    const [authentificated, setauthentificated] = useState (null);
+    const [idToken,setIdToken] = useState (null);
     useEffect (() => {
-        const loggedInUser = localStorage.getItem('authentificated');
-        if (loggedInUser) {
-            setauthentificated(loggedInUser);
+        const token = Auth.getToken();
+        if (token) {
+            setIdToken(loggedInUser);
         }
         },[]); 
-        if (!authentificated) {
             return (
                 <div>
-                    <p>you are non loggedInUser</p>
-                </div>
-            )
-
-        } else {
-            return (
-                <div>
-                    <p>Welcome to Dashboard!</p>
+                     {Auth.loggedIn() ? (
+                < Category/>
+              ) : (
+                <span>(Please log in to see category)</span>
+              )}
                 </div>
             )
         }
-        
-    }
-
 
 export default Dashboard;
-  

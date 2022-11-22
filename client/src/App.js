@@ -16,6 +16,7 @@ import SavedRentals from "./pages/SavedRentals";
 import SearchRentals from "./pages/SavedRentals";
 import Navbar from "./components/Navbar";
 import PostRentals from "./pages/PostRentals";
+import Dashboard from "./pages/Dashboard";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -39,9 +40,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
+          <StoreProvider>
       <Router>
         <div>
-          <StoreProvider>
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -50,10 +51,12 @@ function App() {
               <Route path="/save" element={<SavedRentals />} />
               <Route path="/search" element={<SearchRentals />} />
               <Route path="/post" element={<PostRentals />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            
             </Routes>
-          </StoreProvider>
         </div>
       </Router>
+          </StoreProvider>
     </ApolloProvider>
   );
 }
