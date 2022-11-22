@@ -43,8 +43,9 @@ const resolvers = {
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
+      const token = signToken(user);
 
-      return user;
+      return {token, user};
     },
 
     addOrder: async (parent, { rentals }, context) => {
@@ -94,3 +95,4 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
