@@ -11,7 +11,6 @@ const typeDefs = gql`
         description: String
         image: String
         quantity: Int
-        zipcode: Int
         category: Category
     }
     type Order {
@@ -47,7 +46,7 @@ const typeDefs = gql`
         addOrder(rental: [ID]!): Order
         updateUser(username: String, email: String, password: String): User
         addRental(_id: ID!, quantity: Int!)
-        updateRental(_id: ID!, quantity: Int!, zipcode: Int!): Rental
+        updateRental(_id: ID!, quantity: Int!): Rental
         login(email: String!, password: String!): Auth
     }
 `;
