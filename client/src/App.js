@@ -47,8 +47,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginForm />} />
               <Route path="/signup" element={<SignupForm />} />
-              <Route path="/save" element={<SavedRentals />} />
-              <Route path="/search" element={<SearchRentals />} />
+              <Route path="/SavedRentals" element={<SavedRentals />} />
+              <Route path="/SearchRentals" element={<SearchRentals />} />
               <Route path="/post" element={<PostRentals />} />
             </Routes>
           </StoreProvider>

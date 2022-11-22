@@ -4,6 +4,9 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
+    category: async (parent, { _id }) => {
+      return await Category.findById(_id);
+    },
     categories: async () => {
       return await Category.find();
     },
@@ -23,30 +26,29 @@ const resolvers = {
     rental: async (parent, { _id }) => {
       return await Rental.findById(_id).populate("category");
     },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: "orders.rentals",
-          populate: "category",
-        });
-
-        return user;
-      }
-      throw new AuthenticationError("Not Logged in, sorry");
+    users: async () => {
+      return User.find().populate('orders');
     },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate("orders");
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate("orders");
+      }
+    },
+    // throw new AuthenticationError("Not Logged in, sorry");
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findbyId(context.user._id).populate({
           path: "orders.rentals",
           populate: "category",
         });
-
         return user.orders.id(_id);
+        // throw new AuthenticationError("Not Logged in, sorry, not sorry.");
       }
-      throw new AuthenticationError("Not Logged in, sorry, not sorry.");
     },
   },
-
   Mutation: {
     addUser: async (parent, args) => {
       const user = await User.create(args);
@@ -59,21 +61,21 @@ const resolvers = {
       console.log(context);
       if (context.user) {
         const order = new Order({ rentals });
-        await User.findByIdAndUpdate(context.user._id, {
+        await User.findByIdAndUpdate(context.user.id, {
           $push: { orders: order },
         });
         return order;
       }
-     throw new AuthenticationError("Not Logged in, silly");
+      // throw new AuthenticationError("Not Logged in, silly");
     },
     updateUser: async (parent, args, context) => {
       if (context.user) {
-        return User.findByIdAndUpdate(context.user._id, args, {
+        return User.findByIdAndUpdate(context.user.id, args, {
           new: true,
         });
       }
 
-      throw new AuthenticationError("Not logged in");
+      // throw new AuthenticationError("Not logged in");
     },
     updateRental: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
