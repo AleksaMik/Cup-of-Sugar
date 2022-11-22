@@ -33,7 +33,6 @@ const typeDefs = gql`
         user: User
     }
     type Query {
-        category(_id: ID!): Category
         categories: [Category]
         user: User
         rentals(category: ID, name: String): [Rental]
