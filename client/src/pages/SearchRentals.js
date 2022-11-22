@@ -10,7 +10,7 @@ function Success() {
   useEffect(() => {
     async function SaveRental() {
       const cart = await idbPromise('cart', 'get');
-      const products = cart.map((rental) => rental._id);
+      const products = cart.map((rentals) => rentals._id);
 
       if (products.length) {
         const { data } = await addRental({ variables: { rental } });

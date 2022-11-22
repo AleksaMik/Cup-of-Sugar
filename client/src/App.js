@@ -13,9 +13,10 @@ import LoginForm from "./pages/LoginForm";
 import SignupForm from "./pages/SignupForm";
 import { StoreProvider } from "./utils/GlobalState";
 import SavedRentals from "./pages/SavedRentals";
-import SearchRentals from "./pages/SavedRentals";
+import SearchRentals from "./pages/SearchRentals";
 import Navbar from "./components/Navbar";
 import PostRentals from "./pages/PostRentals";
+
 
 const httpLink = createHttpLink({
   uri: "/graphql",
