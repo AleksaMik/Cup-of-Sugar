@@ -23,8 +23,8 @@ function SavedRentals() {
             <h2>
               Rentals History for {user.username}
             </h2>
-            {user.rentals.map((rentals) => (
-              <div key={rentals._id} className="my-2">
+            {user.orders.map((order) => (
+              <div key={order._id} className="my-2">
                 <div className="flex-row">
                   {order.rentals.map(({ _id, image, name }, index) => (
                     <div key={index} className="card px-1 py-1">

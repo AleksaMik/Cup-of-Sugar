@@ -12,6 +12,7 @@ export const QUERY_USER = gql`
           name
           description
           quantity
+          image
         }
       }
     }
@@ -25,6 +26,7 @@ export const QUERY_RENTALS = gql`
       name
       description
       quantity
+      image
       category {
         _id
       }

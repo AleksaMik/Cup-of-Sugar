@@ -48,13 +48,13 @@ function RentalsList() {
       <h2>Available Rentals</h2>
       {state.rentals.length ? (
         <div className="flex-row">
-          {filterRentals().map((rentals) => (
+          {filterRentals().map((rental) => (
             <Rentals
-              key={rentals._id}
-              _id={rentals._id}
-              image={rentals.image}
-              name={rentals.name}
-              quantity={rentals.quantity}
+              key={rental._id}
+              _id={rental._id}
+              image={rental.image}
+              name={rental.name}
+              quantity={rental.quantity}
             />
           ))}
         </div>
