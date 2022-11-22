@@ -3,6 +3,7 @@ import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
@@ -17,7 +18,6 @@ function Navbar() {
             <Link to="/SearchRentals">Search Rentals</Link>
           </li>
           <li className="mx-1">
-            {/* this is not using the Link component to logout or user and then refresh the application to the start */}
             <a href="/" onClick={() => Auth.logout()}>
               Logout
             </a>
@@ -41,7 +41,7 @@ function Navbar() {
   return (
     <header className="flex-row px-1">
       <h3>
-        <Link to="/">Home</Link>
+        <Link to="/">Cup-of-Sugar</Link>
       </h3>
 
       <nav>{showNavigation()}</nav>
