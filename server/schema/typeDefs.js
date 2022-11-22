@@ -24,6 +24,7 @@ const typeDefs = gql`
     email: String
     password: String
     orders: [Order]
+    rentals: [Rental]
   }
   type Checkout {
     session: ID
@@ -34,7 +35,10 @@ const typeDefs = gql`
   }
   type Query {
     categories: [Category]
-    user: User
+    category(_id: ID!): Category
+    users: [User]
+    user(username: String!): User
+    me: User
     rentals(category: ID, name: String): [Rental]
     rental(_id: ID!): Rental
     order(_id: ID!): Order

@@ -11,10 +11,10 @@ const orderSchema = new Schema({
   rentals: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Items",
+      ref: "Rental",
     },
   ],
 });
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 module.exports = Order;
