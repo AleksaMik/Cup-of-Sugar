@@ -16,6 +16,7 @@ import SavedRentals from "./pages/SavedRentals";
 import SearchRentals from "./pages/SearchRentals";
 import Navbar from "./components/Navbar";
 import PostRentals from "./pages/PostRentals";
+import Cart from './components/Cart'
 
 
 const httpLink = createHttpLink({
@@ -44,6 +45,7 @@ function App() {
         <div>
           <StoreProvider>
             <Navbar />
+            <Cart />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<LoginForm />} />
